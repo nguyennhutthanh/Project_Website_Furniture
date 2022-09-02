@@ -1,0 +1,33 @@
+﻿@model App.Web.Areas.Admin.ViewModels.ProductCategory.AddOrUpdateProductCategoryVM
+@{
+    var disable = Model is null ? "" : "selected-disbles";
+    var data = ViewBag.ProductCate;
+}
+
+
+<select asp-for="ParentCateId" class="selectpicker form-control @disable" title="ProductCategory">
+    @if (Model is null)
+    {
+        <option class="text-danger" value="-1">Không có</option>
+    }
+    else
+    {
+        if (Model.ParentCateId == null)
+        {
+            <option class="text-danger" selected value="-1">Không có</option>
+        }
+    }
+    @{
+        foreach (var item in data.Items)
+        {
+            <option class="text-primary" value="@item.Id">@item.Name</option>
+            @if (item.HasChild)
+            {
+                foreach (var item1 in item.ProductCategoryNavigation)
+                {
+                    <option value="@item1.Id">&emsp; @item1.Name</option>
+                }
+            }
+        }
+    }
+</select>

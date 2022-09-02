@@ -1,0 +1,70 @@
+﻿@model IEnumerable<App.Web.Areas.Admin.ViewModels.Policy.ListItemPolicyVM>
+
+@{
+    ViewData["Title"] = "Danh sách chính sách";
+}
+
+@if (User.IsInPermission(AuthConst.AppPolicy.CREATE))
+{
+    <div class="my-2">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> &nbsp; Tạo chính sách mới
+        </a>
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="text-center">Hình</th>
+                <th>Tiêu đề</th>
+                <th>Slug</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="fit">@item.RowIndex</td>
+                    <td class="text-center">
+                        @{
+                            if (item.CoverImgPath != null)
+                            {
+                                <img src="@item.CoverImgPath" class="item-news-image" />
+                            }
+                            else
+                            {
+                                <img src="~/files/logo.png" style=" width: 50px;height: 50px;object-fit: cover;" />
+                            }
+                        }
+                    </td>
+                    <td>@item.Title</td>
+                    <td>@item.Slug</td>
+                    <td class="fit">
+                        @if (User.IsInPermission(AuthConst.AppPolicy.UPDATE))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"
+                       class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
+                        }
+                        @if (User.IsInPermission(AuthConst.AppPolicy.DETAILS))
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id"
+                       class="btn btn-outline-primary btn-sm"><i class="fas fa-eye"></i></a>
+                        }
+                        @if (User.IsInPermission(AuthConst.AppPolicy.DELETE))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id"
+                       class="btn btn-outline-danger btn-sm js-delete-confirm"
+                       data-msg="Xác nhận xóa bái viết [@item.Title]?"><i class="fas fa-trash"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<partial name="_Pager" />

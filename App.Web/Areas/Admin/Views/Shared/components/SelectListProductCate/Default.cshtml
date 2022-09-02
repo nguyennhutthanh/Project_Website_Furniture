@@ -1,0 +1,191 @@
+﻿@model IEnumerable<App.Data.Entities.AppProductCategory>
+
+<div class="col-md-12">
+    <div class="row text-center" style="border-bottom: 1px solid #bebcbc;padding: 15px 0px;">
+        <div class="col-md-1">
+            #
+        </div>
+        <div class="col-md-5">
+            Tên danh mục
+        </div>
+        <div class="col-md-2">
+            Hình
+        </div>
+        <div class="col-md-2">
+            Cấp danh mục
+        </div>
+        <div class="col-md-2">
+            Chức năng
+        </div>
+    </div>
+    @{
+        var index = 1;
+    }
+    @foreach (var item in Model)
+    {
+        <div class="row mt-2 mb-2 align-items-center text-center"
+         data-toggle="collapse" data-target="#collapseExample-@item.Id"
+         aria-expanded="false"
+         style="border-bottom: 1px solid #bebcbc; padding: 6px 0px;"
+         aria-controls="collapseExample1">
+            <div class="col-md-1">
+                @(index++)
+            </div>
+            <div class="col-md-5">
+                @item.Name
+            </div>
+            <div class="col-md-2">
+                @{
+                    if (item.CoverImgPath != null)
+                    {
+                        <img src="@item.CoverImgPath" class="item-news-image" />
+                    }
+                    else
+                    {
+                        <img src="~/files/logo.png" style=" width: 50px;height: 50px;object-fit: cover;" />
+                    }
+                }
+            </div>
+            <div class="col-md-2">
+                @item.CateLevel
+            </div>
+            <div class="col-md-2">
+                @if (User.IsInPermission(AuthConst.AppProductCategory.UPDATE))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id"
+               class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
+                }
+                @if (User.IsInPermission(AuthConst.AppProductCategory.DELETE))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+               class="btn btn-outline-danger btn-sm js-delete-confirm"
+               data-msg="Xác nhận xóa danh mục [@item.Name]?">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                }
+            </div>
+        </div>
+        @if (item.HasChild)
+        {
+            <div class="collapse" id="collapseExample-@item.Id">
+                <div style="margin: 0px 0px 0px 50px;">
+                    @{
+                        var rowindex = 1;
+                    }
+                    @if (item.ProductCategoryNavigation.Count() > 0)
+                    {
+                        @foreach (var item1 in item.ProductCategoryNavigation)
+                        {
+                            @if (item1.DeletedDate == null)
+                            {
+                                <div class="row mt-2 align-items-center text-center"
+                 data-toggle="collapse" data-target="#collapseExample-@item1.Id"
+                 aria-expanded="false"
+                 style="border-bottom: 1px solid #bebcbc; border-left: 1px solid #bebcbc; padding: 6px 0px; margin-left: 0px;"
+                 aria-controls="collapseExample1">
+                                    <div class="col-md-1">
+                                        @(rowindex++)
+                                    </div>
+                                    <div class="col-md-5">
+                                        @item1.Name
+                                    </div>
+                                    <div class="col-md-2">
+                                        @{
+                                            if (item1.CoverImgPath != null)
+                                            {
+                                                <img src="@item1.CoverImgPath" class="item-news-image" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/files/logo.png" style=" width: 50px;height: 50px;object-fit: cover;" />
+                                            }
+                                        }
+                                    </div>
+                                    <div class="col-md-2">
+                                        @item1.CateLevel
+                                    </div>
+                                    <div class="col-md-2">
+                                        @if (User.IsInPermission(AuthConst.AppProductCategory.UPDATE))
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item1.Id"
+                       class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                        }
+                                        @if (User.IsInPermission(AuthConst.AppProductCategory.DELETE))
+                                        {
+                                            <a asp-action="Delete" asp-route-id="@item1.Id"
+                       class="btn btn-outline-danger btn-sm js-delete-confirm"
+                       data-msg="Xác nhận xóa danh mục [@item1.Name]?">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                                @if (item1.HasChild)
+                                {
+                                    <div class="collapse" id="collapseExample-@item1.Id">
+                                        <div style="margin: 0px 0px 0px 50px;">
+                                            @{
+                                                var rowindex1 = 1;
+                                            }
+                                            @if (item1.ProductCategoryNavigation != null && item1.DeletedDate == null)
+                                            {
+                                                @foreach (var item2 in item1.ProductCategoryNavigation)
+                                                {
+                                                    @if (item2.DeletedDate == null)
+                                                    {
+                                                        <div class="row mt-2 align-items-center text-center"
+                         data-toggle="collapse" data-target="#collapseExample-@item2.Id"
+                         aria-expanded="false"
+                         style="border-bottom: 1px solid #bebcbc; padding: 6px 0px; margin-left: 0px;  border-left: 1px solid #bebcbc;"
+                         aria-controls="collapseExample1">
+                                                            <div class="col-md-1">
+                                                                @(rowindex1++)
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                @item2.Name
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                @{
+                                                                    if (item2.CoverImgPath != null)
+                                                                    {
+                                                                        <img src="@item2.CoverImgPath" class="item-news-image" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img src="~/files/logo.png" style=" width: 50px;height: 50px;object-fit: cover;" />
+                                                                    }
+                                                                }
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                @item2.CateLevel
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                @if (User.IsInPermission(AuthConst.AppProductCategory.UPDATE))
+                                                                {
+                                                                    <a asp-action="Edit" asp-route-id="@item2.Id"
+                               class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                                                }
+                                                                @if (User.IsInPermission(AuthConst.AppProductCategory.DELETE))
+                                                                {
+                                                                    <a asp-action="Delete" asp-route-id="@item2.Id"
+                               class="btn btn-outline-danger btn-sm js-delete-confirm"
+                               data-msg="Xác nhận xóa danh mục [@item2.Name]?">
+                                                                        <i class="fas fa-trash"></i>
+                                                                    </a>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>

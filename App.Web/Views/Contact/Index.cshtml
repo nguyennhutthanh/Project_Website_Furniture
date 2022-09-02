@@ -1,0 +1,48 @@
+﻿@model App.Web.ViewModels.ContactVM
+
+@section Css{
+	<link href="~/lib/bs4-autocomplete/css/bs4-autocomplete.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <section class="slider-inner">
+        <div class="title-page">
+            <h1>Liên hệ</h1>
+        </div>
+        <div class="slide-modify" data-time="5000">
+            <div class="banner-inner">
+                <div class="bg-inner">
+                    <img src="~/clientLTE/dist/pictures/banner/banner-con.jpg" alt="liên hệ"
+                         sizes="100vw">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="outer-nav ani-item">
+        <div class="sub-nav tab">
+            <ul>
+                <li>
+                    <button class="sub-item"
+                            data-name="service-8">
+                        Liên hệ
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="service-content">
+        <div class="service-box scroll-post">
+            <div class="flow-line ani-item"></div>
+            <div class="title">
+                <h2>Liên hệ</h2>
+            </div>
+            <div class="register-box ani-item">
+                <partial name="_FormContact" model="Model" />
+            </div>
+        </div>
+    </section>
+</div>
+
+@section JavaScript{
+    <script src="~/lib/bs4-autocomplete/js/bs4-autocomplete.js"></script>
+}

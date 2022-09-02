@@ -1,0 +1,113 @@
+﻿@model App.Web.Areas.Admin.ViewModels.News.AddOrUpdateNewsVM
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label required">Tiêu đề</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Tóm tắt</label>
+            <input asp-for="Summary" class="form-control" />
+            <span asp-validation-for="Summary" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label required">Thể loại</label>
+            <vc:select-list-category-news-component news="Model" />
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="StampPath" class="control-label">Tem</label>
+            <div class="btn-group w-100" role="group">
+                <input asp-for="StampPath" placeholder="Link tem...."
+                       readonly class="form-control" />
+                <input type="button" class="btn btn-secondary btn-elfinder"
+                       data-imgthumbnailpath=""
+                       data-imgpath="#StampPath" value="Chọn ảnh" />
+            </div>
+            <span asp-validation-for="StampPath" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group group-container">
+            <label class="control-label required">Ảnh bìa</label>
+            <div id="elfinder-background"></div>
+            <input asp-for="CoverImgThumbnailPath" hidden class="form-control">
+            <input asp-for="CoverImgPath" hidden class="form-control">
+            <div class="position-relative">
+                <input type="button"
+                       class="btn btn-elfinder w-100 h-100 position-absolute"
+                       data-imgthumbnailpath="#CoverImgThumbnailPath"
+                       data-imgpath="#CoverImgPath">
+                <div class="selectedImages">
+                    @{
+                        if (Model is null)
+                        {
+                            <span>Ảnh bìa bài viết</span>
+                        }
+                        else
+                        {
+                            <img class="image-review" src="@Model.CoverImgPath" />
+                        }
+                    }
+                </div>
+            </div>
+            <span asp-validation-for="CoverImgPath" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Content" class="control-label"></label>
+    <textarea asp-for="Content" class="form-control"> </textarea>
+    <span asp-validation-for="Content" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">SEO</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input asp-for="SEOTitle" placeholder="Title..." class="form-control" />
+                            <span asp-validation-for="SEOTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <input asp-for="SEODescription" placeholder="Description..." class="form-control" />
+                            <span asp-validation-for="SEODescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Keyword</label>
+                            <input asp-for="SEOKeyword" placeholder="Keyword..." class="form-control" />
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SEOImagePath" class="control-label">Image</label>
+                            <div class="btn-group w-100" role="group">
+                                <input asp-for="SEOImagePath" placeholder="Image...."
+                                       readonly class="form-control" />
+                                <input type="button" class="btn btn-secondary btn-elfinder"
+                                       data-imgthumbnailpath=""
+                                       data-imgpath="#SEOImagePath"
+                                       value="Chọn ảnh" />
+                            </div>
+                            <span asp-validation-for="SEOImagePath" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,62 @@
+﻿@model App.Data.Entities.AppNews
+
+@{
+    Layout = "_Layout";
+}
+
+@section Seo {
+    @if (Model != null)
+    {
+        <partial name="_LocalSEO" model="Model" />
+    }
+}
+
+    @if (Model is null)
+{
+    <h1>Bài viết không tồn tại</h1>
+}
+else
+{
+    <section class="slider-inner">
+        <div class="title-page">
+            <div class="sp-title">Tin tức</div>
+        </div>
+        <div class="slide-modify" data-time="5000">
+            <div class="banner-inner">
+                <div class="bg-inner">
+                    <img src="@Model.CategoryNews.CoverImgPath" alt="Tin tức"
+                     srcset="@Model.CategoryNews.CoverImgPath 2000w"
+                     sizes="100vw">
+                </div>
+            </div>
+        </div>
+    </section>
+    <vc:selecte-list-news-category />
+    <section>
+        <div class="flow-line ani-item">
+        </div>
+        <div class="title">
+            <div class="sp-title" id="data-slug" data-id="@Model.CategoryNews.Slug">@Model.CategoryNews.Title</div>
+        </div>
+        <vc:selecte-list-news-hot />
+        <div class="load-content ani-item">
+            <div class="load-data" style="min-height: 312.5px;">
+                <div class="load-details fadeinup">
+                    <div class="load-title">
+                        <h1>@Model.Title</h1>
+                    </div>
+                    <div class="load-text">
+                        <div class="date">
+                            <p>
+                                <strong>@Model.CreatedDate.Value.Day</strong>@Model.CreatedDate.Value.Month / @Model.CreatedDate.Value.Year
+                            </p>
+                        </div>
+                        <div class="load-inr text-fixed">
+                            @Html.Raw(Model.Content)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

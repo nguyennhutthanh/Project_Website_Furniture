@@ -1,0 +1,73 @@
+﻿@model IEnumerable<App.Web.ViewModels.News.ListNewsVM>
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <section class="slider-inner">
+        <div class="title-page">
+            <h1>Tin tức</h1>
+        </div>
+        <div class="slide-modify" data-time="5000">
+            <div class="banner-inner">
+                <div class="bg-inner">
+                    <img src="@ViewBag.ImageCate" alt="Tin tức"
+                         srcset="@ViewBag.ImageCate 2000w"
+                         sizes="100vw">
+                </div>
+            </div>
+        </div>
+    </section>
+    @*Render newsCategory*@
+    <vc:selecte-list-news-category />
+    <section class="news-section">
+        <div class="flow-line ani-item">
+        </div>
+        <div class="title">
+            <h2>@ViewBag.TitleCate</h2>
+        </div>
+        <div class="slider-news slider-news-page">
+            @{
+                if (Model.Count() <= 0)
+                {
+                    <h1>Không có bài viết nào</h1>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="item-news ani-item">
+                            <div class="box-news-home">
+                                <span class="news-icon"></span>
+                                <div class="pic-news-home">
+                                    <div class="cover-pic"
+                                 data-background="@item.CoverImgPath">
+                                    </div>
+                                </div>
+                                <div class="txt-news-home">
+                                    <div class="date-thumb">
+                                        @item.CreatedDate
+                                    </div>
+                                    <h3>@item.Title</h3>
+                                </div>
+                                <a class="view-more link-load"
+                       asp-action="NewsDetails"
+                       asp-controller="News"
+                       asp-route-slug="@item.Slug"
+                       aria-label="news">
+                                    <span>Đọc thêm</span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </section>
+    @if (Model.Count() > 0)
+    {
+        <section class="pagination_section">
+            <partial name="_Pager" />
+        </section>
+    }
+</div>

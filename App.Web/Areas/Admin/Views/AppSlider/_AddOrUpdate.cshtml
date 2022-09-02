@@ -1,0 +1,40 @@
+﻿@model App.Web.Areas.Admin.ViewModels.Slider.AddOrUpdateSliderVM
+
+<div class="form-group group-container">
+	<label class="control-label required">Ảnh</label>
+	<div id="elfinder-background"></div>
+	<input class="form-control" asp-for="ImagePath" hidden type="text">
+	<div class="position-relative">
+		<input type="button"
+				class="btn btn-elfinder w-100 h-100 position-absolute"
+				data-imgpath="#ImagePath">
+		<div class="selectedImages">
+			@{
+				if (Model is null)
+				{
+					<span>Ảnh bìa bài viết</span>
+				}
+				else
+				{
+					<img class="image-review" src="@Model.ImagePath" />
+				}
+			}
+		</div>
+	</div>
+	<span asp-validation-for="ImagePath" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label class="control-label required">Từ ngày</label>
+	<input asp-for="FromDate" class="form-control" />
+	<span asp-validation-for="FromDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label class="control-label required">Đến ngày</label>
+	<input asp-for="ToDate" class="form-control" />
+	<span asp-validation-for="ToDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label class="control-label required">Tiêu đề</label>
+	<input asp-for="Link" class="form-control" />
+	<span asp-validation-for="Link" class="text-danger"></span>
+</div>

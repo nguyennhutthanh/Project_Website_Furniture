@@ -1,0 +1,40 @@
+﻿@model App.Web.Areas.Admin.ViewModels.Policy.AddOrUpdatePolicyVM
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label required">Tiêu đề</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group group-container">
+            <label class="control-label required">Ảnh bìa</label>
+            <div id="elfinder-background"></div>
+            <input asp-for="CoverImgThumbnailPath" hidden type="text">
+            <input asp-for="CoverImgPath" hidden type="text">
+            <div class="position-relative">
+                <input type="button" class="btn btn-elfinder w-100 h-100 position-absolute"
+                       data-imgthumbnailpath="#CoverImgThumbnailPath"
+                       data-imgpath="#CoverImgPath">
+                <div class="selectedImages">
+                    @{
+                        if (Model is null)
+                        {
+                            <span>Ảnh bìa bài viết</span>
+                        }
+                        else
+                        {
+                            <img class="image-review" src="@Model.CoverImgPath" />
+                        }
+                    }
+                </div>
+            </div>
+            <span asp-validation-for="CoverImgPath" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label">Nội dung</label>
+    <textarea asp-for="Content" class="form-control"> </textarea>
+    <span asp-validation-for="Content" class="text-danger"></span>
+</div>

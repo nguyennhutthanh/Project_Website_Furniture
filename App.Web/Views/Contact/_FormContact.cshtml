@@ -1,0 +1,35 @@
+﻿@model App.Web.ViewModels.ContactVM
+
+<form asp-action="Index" method="post" asp-controller="Contact">
+    <div class="require-col">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="input-text">
+            <div class="col">
+                <input type="text" class="col-input" asp-for="FullName" placeholder="Họ và tên..">
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="input-text">
+            <div class="col">
+                <input type="text" class="col-input" asp-for="PhoneNumber" placeholder="Số điện thoại..">
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="input-text">
+            <div class="col">
+                <input type="text" class="col-input" asp-for="Email" placeholder="Địa chỉ email..">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="input-area">
+            <textarea placeholder="Nội dung" asp-for="Content">Nội Dung</textarea>
+        </div>
+        <div class="input-but">
+            <div class="outer-but">
+                <button type="submit" class="btn-submit">
+                    Gửi
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,294 @@
+﻿@model SystemEnv;
+
+@{
+    ViewData["Title"] = "System Environment";
+}
+
+@section head {
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+}
+
+    <form asp-action="Update" autocomplete="off">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @* --- Thông tin cơ bản ---*@
+        <div class="form-group">
+            <section class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Thông tin cơ bản</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="@SysEnvConst.LOGO" class="control-label">@SysEnvConst.LOGO</label>
+                            <div class="btn-group w-100" role="group">
+                                <input readonly id="@SysEnvConst.LOGO"
+                                   name="@SysEnvConst.LOGO"
+                                   class="form-control" value="@Model[SysEnvConst.LOGO]"
+                                   placeholder="Logo...." />
+                                <input type="button" class="btn btn-secondary btn-elfinder"
+                                   data-input="#Logo"
+                                   value="Chọn ảnh" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="@SysEnvConst.FACEBOOK" class="control-label">@SysEnvConst.FACEBOOK</label>
+                                    <input id="@SysEnvConst.FACEBOOK"
+                                       name="@SysEnvConst.FACEBOOK"
+                                       placeholder="Facebook...."
+                                       class="form-control" value="@Model[SysEnvConst.FACEBOOK]" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="@SysEnvConst.ZALO" class="control-label">@SysEnvConst.ZALO</label>
+                                    <input id="@SysEnvConst.ZALO"
+                                       placeholder="Zalo...."
+                                       name="@SysEnvConst.ZALO"
+                                       class="form-control" value="@Model[SysEnvConst.ZALO]" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="@SysEnvConst.YOUTUBE" class="control-label">@SysEnvConst.YOUTUBE</label>
+                            <input id="@SysEnvConst.YOUTUBE"
+                               placeholder="Youtube...."
+                               name="@SysEnvConst.YOUTUBE" class="form-control" value="@Model[SysEnvConst.YOUTUBE]" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="@SysEnvConst.BRAND_PHONE" class="control-label">@SysEnvConst.BRAND_PHONE</label>
+                                    <input id="@SysEnvConst.BRAND_PHONE"
+                                       placeholder="Brand Phone...."
+                                       name="@SysEnvConst.BRAND_PHONE" class="form-control" value="@Model[SysEnvConst.BRAND_PHONE]" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="@SysEnvConst.BRAND_NAME" class="control-label">@SysEnvConst.BRAND_NAME</label>
+                                    <input id="@SysEnvConst.BRAND_NAME"
+                                       placeholder="Brand name...."
+                                       name="@SysEnvConst.BRAND_NAME" class="form-control" value="@Model[SysEnvConst.BRAND_NAME]" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="@SysEnvConst.BRAND_ADDRESS" class="control-label">@SysEnvConst.BRAND_ADDRESS</label>
+                            <textarea rows="3"
+                                  id="@SysEnvConst.BRAND_ADDRESS"
+                                  placeholder="Brand address...."
+                                  name="@SysEnvConst.BRAND_ADDRESS" class="form-control"
+                                  value="@Model[SysEnvConst.BRAND_ADDRESS]"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @* --- Thông tin mail --- *@
+        <div class="form-group">
+            <section class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Thông tin mail</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="@SysEnvConst.ADMIN_RECIVER_MAIL" class="control-label">@SysEnvConst.ADMIN_RECIVER_MAIL</label>
+                            <input id="@SysEnvConst.ADMIN_RECIVER_MAIL"
+                               placeholder="Reciver mail...."
+                               name="@SysEnvConst.ADMIN_RECIVER_MAIL"
+                               class="form-control" value="@Model[SysEnvConst.ADMIN_RECIVER_MAIL]" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="@SysEnvConst.PRIMARY_MAIL" class="control-label">Mail 1</label>
+                                    <input id="@SysEnvConst.PRIMARY_MAIL"
+                                       placeholder="Primary mail...."
+                                       name="@SysEnvConst.PRIMARY_MAIL"
+                                       class="form-control" value="@Model[SysEnvConst.PRIMARY_MAIL]" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="@SysEnvConst.SECONDARY_MAIL" class="control-label">Mail 2</label>
+                                    <input id="@SysEnvConst.SECONDARY_MAIL"
+                                       placeholder="Secondary mail...."
+                                       name="@SysEnvConst.SECONDARY_MAIL"
+                                       class="form-control" value="@Model[SysEnvConst.SECONDARY_MAIL]" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @* --- KiotViet API --- *@
+        <div class="form-group">
+            <section class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">KiotViet API</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="@SysEnvConst.KIOT_VIET_CLIENT_ID" class="control-label">@SysEnvConst.KIOT_VIET_CLIENT_ID</label>
+                            <input id="@SysEnvConst.KIOT_VIET_CLIENT_ID"
+                               placeholder="KiotViet Client Id...."
+                               name="@SysEnvConst.KIOT_VIET_CLIENT_ID"
+                               class="form-control" value="@Model[SysEnvConst.KIOT_VIET_CLIENT_ID]" />
+                        </div>
+                        <div class="form-group">
+                            <label for="@SysEnvConst.KIOT_VIET_CLIENT_SECRET_KEY" class="control-label">@SysEnvConst.KIOT_VIET_CLIENT_SECRET_KEY</label>
+                            <input id="@SysEnvConst.KIOT_VIET_CLIENT_SECRET_KEY"
+                               placeholder="KiotViet Client Secret key...."
+                               name="@SysEnvConst.KIOT_VIET_CLIENT_SECRET_KEY"
+                               class="form-control" value="@Model[SysEnvConst.KIOT_VIET_CLIENT_SECRET_KEY]" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @* --- Embedded --- *@
+        <div class="form-group">
+            <section class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Embedded</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="@SysEnvConst.EMBEDDED_MAP" class="control-label">@SysEnvConst.EMBEDDED_MAP</label>
+                            <textarea id="@SysEnvConst.EMBEDDED_MAP"
+                                  placeholder="Embedded map...."
+                                  name="@SysEnvConst.EMBEDDED_MAP" class="form-control"
+                                  value="@Model[SysEnvConst.EMBEDDED_MAP]"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="@SysEnvConst.MESSENGER_EMBEDDED_CODE" class="control-label">@SysEnvConst.MESSENGER_EMBEDDED_CODE</label>
+                            <textarea id="@SysEnvConst.MESSENGER_EMBEDDED_CODE"
+                                  placeholder="Messager Embedded code...."
+                                  name="@SysEnvConst.MESSENGER_EMBEDDED_CODE"
+                                  class="form-control" value="@Model[SysEnvConst.MESSENGER_EMBEDDED_CODE]"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @* --- Video --- *@
+        <div class="form-group">
+            <section class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Video</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="@SysEnvConst.VIDEO_YOUTUBE" class="control-label">@SysEnvConst.VIDEO_YOUTUBE</label>
+                            <textarea rows="4" id="@SysEnvConst.VIDEO_YOUTUBE"
+                                  placeholder="Video youtube...."
+                                  name="@SysEnvConst.VIDEO_YOUTUBE" class="form-control"
+                                  value="@Model[SysEnvConst.VIDEO_YOUTUBE]"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @* --- SEO ---*@
+        <div class="form-group">
+            <section class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">SEO</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Title</label>
+                                    <input id="@SysEnvConst.SEO_TITLE"
+                                       value="@Model[SysEnvConst.SEO_TITLE]"
+                                       name="@SysEnvConst.SEO_TITLE" placeholder="Title..." class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Description</label>
+                                    <input id="@SysEnvConst.SEO_DESCRIPTION"
+                                       value="@Model[SysEnvConst.SEO_DESCRIPTION]"
+                                       name="@SysEnvConst.SEO_DESCRIPTION" placeholder="Description..." class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Keyword</label>
+                                    <input id="@SysEnvConst.SEO_KEYWORD"
+                                       value="@Model[SysEnvConst.SEO_KEYWORD]"
+                                       name="@SysEnvConst.SEO_KEYWORD" placeholder="Keyword..." class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Image</label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input id="@SysEnvConst.SEO_IMAGEPATH"
+                                           value="@Model[SysEnvConst.SEO_IMAGEPATH]"
+                                           name="@SysEnvConst.SEO_IMAGEPATH" placeholder="Image...."
+                                           readonly class="form-control" />
+                                        <input type="button" class="btn btn-secondary btn-elfinder"
+                                           data-input="#SEOImagePath"
+                                           value="Chọn ảnh" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu</button>
+            <button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Nhập lại</button>
+        </div>
+    </form>
+
+    @section scripts {
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/elfinder/js/elfinder.min.js"></script>
+    <script src="~/js/sys-env/index.js"></script>
+    }

@@ -1,0 +1,40 @@
+﻿.required {
+	&:after {
+		content: ' *';
+		color: red;
+	}
+}
+
+.fit {
+	width: 1%;
+	white-space: nowrap;
+}
+
+.fake-d-none {
+	display: block !important;
+	width: 0;
+	height: 0;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+
+.hover\: {
+	$transitionTime: 0.3s;
+
+	&pointer:hover {
+		cursor: pointer;
+	}
+
+	&text-primary {
+		transition: color $transitionTime;
+
+		&:hover {
+			color: var(--primary);
+		}
+	}
+}
+
+.elfinder .dialogelfinder {
+	z-index: 1039;
+}

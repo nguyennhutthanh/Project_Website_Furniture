@@ -1,0 +1,61 @@
+﻿@model IEnumerable<App.Web.Areas.Admin.ViewModels.Slider.ListItemSliderVM>
+
+	<section class="slider-home">
+		<div class="slide-modify" data-time="5000">
+			@if (Model.Count() > 0)
+			{
+				@foreach (var item in Model)
+				{
+					<div class="banner-home">
+						<div class="bg-home">
+							<img src="@item.ImagePath" alt="Source demo" />
+							sizes="100vw">
+						</div>
+						<div class="text-banner"><a class="go-page" href="@item.Link">Khám phá ngay</a></div>
+					</div>
+				}
+			}
+			else
+			{
+				<div class="banner-home">
+					<div class="bg-home">
+						<img src="~/clientLTE/dist/pictures/promotion/uu-dai-kep-x2-qua/home-Banner-uu-dai-kepjpg-2.jpg" alt="Source demo" />
+						sizes="100vw">
+					</div>
+					<div class="text-banner"><a class="go-page" href="./noi-that.html">Khám phá ngay</a></div>
+				</div>
+				<div class="banner-home">
+					<div class="bg-home">
+						<img src="~/clientLTE/dist/pictures/banner-trang-chu/banner-phong-khach.jpg" alt="Source demo"
+							 sizes="100vw">
+					</div>
+					<div class="text-banner">
+						<a class="go-page" href="./noi-that.html">
+							Khám
+							phá ngay
+						</a>
+					</div>
+				</div>
+				<div class="banner-home">
+					<div class="bg-home">
+						<img src="~/clientLTE/dist/pictures/banner-trang-chu/banner-phong-an.jpg" alt="Source demo" sizes="100vw" />
+					</div>
+					<div class="text-banner">
+						<a class="go-page" href="./noi-that.html">Khám phá ngay</a>
+					</div>
+				</div>
+				<div class="banner-home">
+					<div class="bg-home">
+						<img src="~/clientLTE/dist/pictures/banner-trang-chu/bannerphong-ngu-1.jpg" alt="Source demo" />
+						sizes="100vw">
+					</div>
+					<div class="text-banner">
+						<a class="go-page" href="./noi-that.html">
+							Khám phá
+							ngay
+						</a>
+					</div>
+				</div>
+			}
+		</div>
+	</section>

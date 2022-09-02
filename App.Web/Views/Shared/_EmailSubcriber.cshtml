@@ -1,0 +1,19 @@
+﻿<div class="subscrible">
+    <span>Đừng bỏ lỡ các chương trình hấp dẫn của ShowRoom PHÚ CƯỜNG</span>
+    <p>Vui lòng nhập email của bạn</p>
+    <div class="input-text">
+        <form asp-action="SubcriberUser"
+              asp-area="" method="post"
+              asp-controller="Contact">
+            <input id="emailregister" name="emailregister"
+                   placeholder="Email (*)"
+                   data-msg-email="Enter a valid email account!"
+                   type="email" required pattern="[^@@]+@@[^@@]+\.[a-zA-Z]{2,6}">
+            <div class="outer-but">
+                <button type="submit" id="btn-register-submit" aria-label="but">
+                    Nhận tin
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

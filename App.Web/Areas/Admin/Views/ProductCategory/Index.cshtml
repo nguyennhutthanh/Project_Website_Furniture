@@ -1,0 +1,42 @@
+﻿@model App.Web.Areas.Admin.ViewModels.ProductCategory.AddOrUpdateProductCategoryVM
+
+@{
+    ViewData["Title"] = "Danh sách danh mục sản phẩm ";
+}
+
+@if (User.IsInPermission(AuthConst.AppProductCategory.CREATE))
+{
+    <div class="mb-3">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fas fa-book-medical"></i> &nbsp; Tạo mới danh mục
+        </button>
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form asp-action="Index" method="post" asp-controller="ProductCategory">
+                <partial name="_AddOrUpdateCate" model="Model" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Nhập lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<div class="card card-body">
+    <vc:select-list-product-cate />
+</div>
+
+@section scripts{
+    <script src="~/lib/bs4-autocomplete/js/bs4-autocomplete.js"></script>
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/elfinder/js/elfinder.min.js"></script>
+    <script src="~/js/file-news-manager/news_file_manager.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+}

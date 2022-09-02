@@ -1,0 +1,39 @@
+﻿@model IEnumerable<App.Web.Areas.Admin.ViewModels.News.ListItemNewsVM>
+
+<div class="relation-wrap at-top ani-item">
+    <div class="scroll-slide">
+        <div class="news-link">
+            @if (Model is null)
+            {
+                <h1>Không có dữ liệu</h1>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <a asp-action="NewsDetails"
+               asp-controller="News"
+               asp-route-slug="@item.Slug"
+               asp-area="" class="link-page">
+                        <div class="pic-thumb">
+                            <img src="@item.CoverImgPath"
+                         loading="lazy">
+                        </div>
+                        <div class="link-text">
+                            <div class="link-name">
+                                @item.Summary
+                            </div>
+                        </div>
+                        <span class="news-icon">
+                            @if (item.StampPath != null)
+                            {
+                                <img src="@item.StampPath" style="width: 40px;height: 40px;" />
+                            }
+                        </span>
+
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Http
+@model App.Data.Entities.AppNews
+@inject IHttpContextAccessor contextAccessor
+@inject SystemEnv sysEnv
+
+@{
+    var Scheme = contextAccessor.HttpContext.Request.Scheme;
+    var host = contextAccessor.HttpContext.Request.Host;
+    var doamin = $"{Scheme}://{host}";
+
+    var title = Model.SEOTitle.IsNullOrEmpty() ? sysEnv[SysEnvConst.SEO_TITLE] : Model.SEOTitle;
+    var decs = Model.SEODescription.IsNullOrEmpty() ? sysEnv[SysEnvConst.SEO_DESCRIPTION] : Model.SEODescription;
+    var key = Model.SEOKeyword.IsNullOrEmpty() ? sysEnv[SysEnvConst.SEO_KEYWORD] : Model.SEOKeyword;
+    var image = Model.SEOImagePath.IsNullOrEmpty() ? sysEnv[SysEnvConst.SEO_IMAGEPATH] : Model.SEOImagePath;
+}
+<meta name="title" content="@title">
+<meta name="description" content="@decs">
+<meta name="keywords" content="@key">
+<meta name="image" content="@doamin@image">

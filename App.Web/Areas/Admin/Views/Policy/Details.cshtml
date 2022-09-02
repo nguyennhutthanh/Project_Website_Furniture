@@ -1,0 +1,26 @@
+﻿@model App.Web.Areas.Admin.ViewModels.Policy.ListItemPolicyVM
+
+@{
+    ViewData["Title"] = $"Chi tiết chích sách [{Model.Title}]";
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h5>Tên chính sách: @Model.Title</h5>
+    </div>
+     <div class="col-md-6 like-container">
+          <div class="like-but">
+           <i class="fas fa-thumbs-up"></i>
+            <span class="like-circle ml-2">@Model.Like</span>
+        </div>
+    </div>
+</div>
+<hr />
+<h5>Nội dung:</h5>
+<div class="load-text">
+    <div class="text-center">
+        <p>@Html.Raw(Model.Content)</p>
+    </div>
+</div>
+<partial name="_BackToList" />

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<App.Web.Areas.Admin.ViewModels.Slider.ListItemSliderVM>
+
+@{
+	ViewData["Title"] = "Slider";
+}
+
+<div class="my-2">
+	<a asp-action="Create" class="btn btn-primary">
+		<i class="fas fa-th-large"></i> &nbsp; Thêm ảnh slider
+	</a>
+</div>
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Ảnh</th>
+				<th>Từ ngày</th>
+				<th>Đến ngày</th>
+				<th>Liên kết</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td class="fit">@item.RowIndex</td>
+					<td class="text-center">
+						@{
+							if (item.ImagePath != null)
+							{
+								<img src="@item.ImagePath" class="item-news-image" />
+							}
+							else
+							{
+								<img src="~/files/logo.png" style=" width: 50px;height: 50px;object-fit: cover;" />
+							}
+						}
+					</td>
+					<td>@item.FromDate.ToString("dd/MM/yyyy")</td>
+					<td>@item.ToDate.ToString("dd/MM/yyyy")</td>
+					<td>@item.Link</td>
+					<td class="fit">
+						<a asp-action="Edit" asp-route-id="@item.Id"
+						   class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i></a>
+						<a asp-action="Delete" asp-route-id="@item.Id"
+						   class="btn btn-outline-danger btn-sm js-delete-confirm"
+						   onclick="return confirm('Xác nhận xóa slider này?')"><i class="fa fas fa-trash"></i></a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+<partial name="_Pager" />

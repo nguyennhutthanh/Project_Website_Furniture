@@ -1,0 +1,49 @@
+﻿@model IEnumerable<App.Web.Areas.Admin.ViewModels.Contact.ListItemContactVM>
+
+@{
+    ViewData["Title"] = "Danh sách liên hệ";
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th class="text-center">SĐT</th>
+                <th>Nội dung</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="fit">@item.RowIndex</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td class="text-center">
+                        <button type="button"
+                            class="btn btn-outline-warning"
+                            data-toggle="modal"
+                            data-target="#exampleModal-@item.RowIndex">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <partial name="_ModelContent" model="item" />
+                    </td>
+                    <td class="fit">
+                        @if (User.IsInPermission(AuthConst.AppContact.DELETE))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id"
+                       class="btn btn-outline-danger btn-sm js-delete-confirm"
+                       data-msg="Xác nhận xóa lời nhắn của [@item.FullName]?"><i class="fas fa-trash"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<partial name="_Pager" />

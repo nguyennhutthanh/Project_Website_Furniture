@@ -1,0 +1,56 @@
+﻿using App.Data.Configurations;
+using App.Data.DataSeeders;
+using App.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace App.Data
+{
+	public class WebAppDbContext : DbContext
+	{
+		public DbSet<AppRole> AppPolicies { get; set; }
+		public DbSet<AppRolePermission> AppRolePermissions { get; set; }
+		public DbSet<AppUser> AppUsers { get; set; }
+		public DbSet<MstPermission> MstPermissions { get; set; }
+		public DbSet<AppVerifyCode> AppVerifyCodes { get; set; }
+		public DbSet<AppNews> AppNews { get; set; }
+		public DbSet<AppCategoryNews> AppCategoryNews { get; set; }
+		public DbSet<AppPolicy> AppPolicys { get; set; }
+		public DbSet<AppContact> AppContacts { get; set; }
+		public DbSet<AppProductCategory> AppProductCategories { get; set; }
+		public DbSet<AppSlider> AppSliders { get; set; }
+		public DbSet<SysEnv> SysEnvs { get; set; }
+		public DbSet<AppEmailSubscriber> AppEmailSubscribers { get; set; }
+
+		public WebAppDbContext(DbContextOptions options) : base(options)
+		{
+		}
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.ApplyConfiguration(new AppUserConfig());
+			modelBuilder.ApplyConfiguration(new AppRoleConfig());
+			modelBuilder.ApplyConfiguration(new AppRolePermissionConfig());
+			modelBuilder.ApplyConfiguration(new MstPermissionConfig());
+			modelBuilder.ApplyConfiguration(new AppVerifyCodeConfig());
+			modelBuilder.ApplyConfiguration(new AppCategoryNewsConfig());
+			modelBuilder.ApplyConfiguration(new AppNewsConfig());
+			modelBuilder.ApplyConfiguration(new AppPolicyConfig());
+			modelBuilder.ApplyConfiguration(new AppContactConfig());
+			modelBuilder.ApplyConfiguration(new AppProductCategoryConfig());
+			modelBuilder.ApplyConfiguration(new AppSliderConfig());
+			modelBuilder.ApplyConfiguration(new SysEnvConfig());
+			modelBuilder.ApplyConfiguration(new AppEmailSubscriberConfig());
+
+			// Tạo dữ liệu
+			modelBuilder.Entity<MstPermission>().SeedData();
+			modelBuilder.Entity<AppRole>().SeedData();
+			modelBuilder.Entity<AppUser>().SeedData();
+			modelBuilder.Entity<AppRolePermission>().SeedData();
+			modelBuilder.Entity<SysEnv>().SeedData();
+		}
+	}
+}

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<App.Web.Areas.Admin.ViewModels.CategoryNews.ListItemCategoryNewsVM>
+
+<section class="outer-nav ani-item">
+    <div class="sub-nav">
+        <ul id="Sub-nav-list">
+            <li>
+                <a class="sub-item" asp-action="Index"
+                   asp-controller="News">Tất cả tin tức</a>
+            </li>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a class="sub-item"
+                   asp-controller="News"
+                   asp-action="Index"
+                   asp-route-slug="@item.Slug">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </div>
+</section>

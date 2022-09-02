@@ -1,0 +1,31 @@
+﻿@model App.Web.Areas.Admin.ViewModels.CategoryNews.AddOrUpdateCategoryNewsVM
+
+@{
+    ViewData["Title"] = "Tạo thể loại";
+}
+@section head{
+    <link href="~/lib/bs4-autocomplete/css/bs4-autocomplete.css" rel="stylesheet" />
+}
+    <hr />
+    <div class="col-md-12">
+        <form asp-action="Create" method="post" asp-controller="CategoryNews" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_AddOrUpdate" model="Model" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu</button>
+                <button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Nhập lại</button>
+            </div>
+        </form>
+    </div>
+    <partial name="_BackToList" />
+@section scripts{
+    <script src="~/lib/bs4-autocomplete/js/bs4-autocomplete.js"></script>
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/elfinder/js/elfinder.min.js"></script>
+    <script src="~/js/file-news-manager/news_file_manager.js"></script>
+}
+

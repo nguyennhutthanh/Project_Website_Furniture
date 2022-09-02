@@ -1,0 +1,32 @@
+﻿@model App.Web.Areas.Admin.ViewModels.Slider.AddOrUpdateSliderVM
+
+@{
+	ViewData["Title"] = "Thêm slider mới";
+}
+
+@section head {
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+	<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+	<link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+}
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Create" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<partial name="_AddOrUpdate" model="Model" />
+			<div class="form-group">
+				<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu</button>
+				<button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Nhập lại</button>
+			</div>
+		</form>
+	</div>
+</div>
+<partial name="_BackToList" />
+
+@section scripts {
+	<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+	<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+	<script src="~/js/slider/slider-elfinder.js"></script>
+}
